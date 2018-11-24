@@ -2,11 +2,11 @@ require 'pry'
 class Owner
 	attr_accessor :pets
 	attr_reader :species, :name
-  
+
   @@all_owners = []
   @@owner_count = 0
-  
-  
+
+
   def initialize(pets)
   	@species = "human"
   	@pets = pets
@@ -14,33 +14,33 @@ class Owner
   	@pets = {fishes: [], cats: [], dogs: []}
     @@all_owners << self
   end
-   
+
    def self.all
    	@@all_owners
-   end	
+   end
 
    def self.count
    	@@owner_count = @@all_owners.length
-   end	
+   end
 
    def self.reset_all
    	@@all_owners.clear
-   end	
-   
+   end
+
    def say_species
   	 "I am a human."
-   end	
+   end
 
    def name=(name)
    	  @name = name
-   end	
+   end
 
    def buy_fish(fish_name)
    	 fish = Fish.new(fish_name)
      #fish.owner = self, when would this be needed?
      self.pets[:fishes] << fish
     end
-    
+
     def buy_cat(cat_name)
    	 cat = Cat.new(cat_name)
      self.pets[:cats] << cat
@@ -50,36 +50,36 @@ class Owner
    	 dog = Dog.new(dog_name)
      self.pets[:dogs] << dog
     end
-    
+
     def walk_dogs
     	self.pets[:dogs].each do |dog|
     	  dog.mood = "happy"
-    	end 
-    end	  
+    	end
+    end
 
     def play_with_cats
       self.pets[:cats].each do |cat|
-        cat.mood = "happy" 
+        cat.mood = "happy"
       end
-     end   
-     # 
+     end
+     #
     def feed_fish
       self.pets[:fishes].each do |fish|
-        fish.mood = "happy" 
-      end 
-    end   
+        fish.mood = "happy"
+      end
+    end
 
      def sell_pets
      	@pets.each do |type, pets|
      		pets.each do |pet|
      			pet.mood = "nervous"
      		end
-     	end		
+     	end
       @pets.each do |type, pets|
       	pets.clear
-      end	
-     end	   
-     
+      end
+     end
+
      def list_pets
      	pets_phrase = []
      	 sentence = "I have"
@@ -91,7 +91,7 @@ class Owner
      	 sentence = sentence.gsub("fishes","fish").gsub("cats", "cat(s)").gsub("dogs", "dog(s)")
        sentence = sentence = sentence.insert(-10, "and ")
        sentence = sentence.strip.chomp(",") + "."
-     end    
+     end
 end
 
  
